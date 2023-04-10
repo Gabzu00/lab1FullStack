@@ -16,8 +16,24 @@ function getData() {
     });
 }
 
+function getDataTitle(title) {
+  console.log(title)
+  return dbConnection
+    .collection("Albums")
+    .find({ title: { $eq: title } })
+    .toArray()
+    .then(albums => {
+      console.log(albums + " array from db")
+      return JSON.stringify(albums);
+    })
+    .catch(error => {
+      throw new Error("Could not fetch the documents: " + error);
+    });
+}
+
 module.exports = {
   getData,
+  getDataTitle,
   connectToDB: async () => {
     try {
       const client = await MongoClient.connect(process.env.URL);

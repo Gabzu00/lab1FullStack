@@ -2,7 +2,7 @@ const express = require("express")
 const app = express()
 require("dotenv").config()
 const path = require('path');
-const { connectToDB, getDB, getData } = require("./db");
+const { connectToDB, getDB, getData, getDataTitle } = require("./db");
 const cors = require("cors")
 
 app.use(express.json())
@@ -39,5 +39,19 @@ app.get('/api/albums', (req, res) => {
     .catch(error => {
       console.log(error);
     });
+})
+
+app.get('/api/albums/:title', (req, res) => {
+  const title = req.params.title;
+  getDataTitle(title)
+    .then(albums => {
+      console.log(albums + " from server")
+      getData(albums);
+      res.json(albums)
+    })
+    .catch(error => {
+      res.json(error)
+    });
+
 })
 
