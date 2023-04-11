@@ -2,7 +2,7 @@ const express = require("express")
 const app = express()
 require("dotenv").config()
 const path = require('path');
-const { connectToDB, getDB, getData, getDataTitle, addData, updateData } = require("./db");
+const { connectToDB, getDB, getData, getDataTitle, addData, updateData, deleteData } = require("./db");
 const cors = require("cors")
 
 app.use(express.json())
@@ -91,5 +91,20 @@ app.put('/api/albums/:id', (req, res) => {
     .catch(error => {
       res.json(error).status(404)
     });
+
+})
+
+app.delete('/api/albums/:id', (req, res) => {
+  let id = req.params.id
+
+  deleteData(id)
+    .then(albums => {
+      console.log(albums)
+      res.json(albums).status(201)
+    })
+    .catch(error => {
+      res.json(error).status(404)
+    });
+
 
 })

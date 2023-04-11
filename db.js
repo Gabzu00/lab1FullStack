@@ -68,9 +68,29 @@ function updateData(_id, title, artistName, year) {
     });
 }
 
+function deleteData(_id) {
+  console.log(_id)
+  return dbConnection
+    .collection("Albums")
+    .deleteOne({ _id })
+    .then(result => {
+      if (result.deletedCount === 1) {
+        console.log("Document deleted successfully");
+        return "Document deleted successfully";
+      } else {
+        return "Error ! This id was not found in the database"
+      }
+    })
+    .catch(error => {
+      console.log("Could not delete the document:", error);
+      throw error;
+    });
+}
+
 
 
 module.exports = {
+  deleteData,
   updateData,
   addData,
   getData,

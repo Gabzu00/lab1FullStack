@@ -36,22 +36,21 @@ async function displayData() {
     yearCell.textContent = element.year;
     newRow.appendChild(yearCell);
 
-
-    // create a new cell for the button
+    // create a new cell for the update button and input fields
     const buttonCell = document.createElement('td');
 
     // create update button element
     const updateButton = document.createElement('button');
     updateButton.textContent = 'Update';
-    updateButton.id = 'updateButton';
+    updateButton.id = `updateButton-${element._id}`;
 
     // create delete button element
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
-    deleteButton.id = 'deleteButton';
+    deleteButton.id = `deleteButton-${element._id}`;
 
     const updateDiv = document.createElement('div');
-    updateDiv.id = 'updateDiv'
+    updateDiv.id = `updateDiv-${element._id}`;
 
     // append the button to the cell
     buttonCell.appendChild(updateButton);
@@ -65,26 +64,25 @@ async function displayData() {
     tableBody.appendChild(newRow);
 
     updateButton.addEventListener('click', async () => {
-      const element = document.querySelector("#updateDiv")
-      element.innerHTML = /*html*/`
-      <input type="text" id="getID" placeholder="ID">
-      <input type="text" id="getTitle" placeholder="Title">
-      <input type="text" id="getArtist" placeholder="Artist">
-      <input type="text" id="getYear" placeholder="Year">
-      <button id="commitButton">Commit</button>
-      `;
+      const updateDiv = document.querySelector(`#updateDiv-${element._id}`);
+      updateDiv.innerHTML = /*html*/`
+      <input type="text" id="getID" placeholder="ID" value="${element._id}" disabled>
+      <input type="text" id="getTitle" placeholder="Title" value="${element.title}">
+      <input type="text" id="getArtist" placeholder="Artist" value="${element.artistName}">
+      <input type="text" id="getYear" placeholder="Year" value="${element.year}">
+      <button id="commitButton-${element._id}">Commit</button>
+    `;
 
+      const commitButton = document.querySelector(`#commitButton-${element._id}`);
       commitButton.addEventListener('click', async () => {
-        const getID = document.getElementById('getID')
         const getUpdateTitle = document.getElementById('getTitle')
         const getArtist = document.getElementById('getArtist')
         const getYear = document.getElementById('getYear')
-        const id = getID.value
         const title = getUpdateTitle.value
         const artist = getArtist.value
         const year = getYear.value
 
-        const result = await updateData(id, title, artist, year)
+        const result = await updateData(element._id, title, artist, year)
 
         if (result === "Error ! This id was not found in the database") {
           document.getElementById('ErrorMessage').innerHTML = (result)
@@ -95,11 +93,22 @@ async function displayData() {
     })
 
     deleteButton.addEventListener('click', async () => {
-      document.getElementById('updateDiv').innerHTML = ('')
-      const element = document.querySelector("#updateDiv")
-      element.innerHTML = /*html*/`
-      <input type="text" id="getID" placeholder="ID">
+      const updateDiv = document.querySelector(`#updateDiv-${element._id}`);
+      updateDiv.innerHTML = /*html*/`
+      <input type="text" id="getID" placeholder="ID" value="${element._id}" disabled>
+      <button  id="confirmButton-${element._id}">Confirm</button>
       `;
+
+      const confirmButton = document.querySelector(`#confirmButton-${element._id}`);
+      confirmButton.addEventListener('click', async () => {
+
+        const result = await deleteData(element._id)
+        document.getElementById('ErrorMessage').innerHTML = (JSON.stringify(result))
+
+        document.getElementById('showAlbums').innerHTML = ('')
+        displayData()
+      })
+
     })
 
   });
@@ -193,6 +202,21 @@ async function updateData(id, title, artist, year) {
       method: 'PUT',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ title: title, artist: artist, year: year })
+    });
+
+    var rest = result.json();
+    return (rest)
+  } catch {
+    console.log("Something went wrong")
+  }
+}
+
+
+async function deleteData(id) {
+  try {
+    var result = await fetch(`http://localhost:3000/api/albums/${id}`, {
+      method: 'DELETE',
+      headers: { 'content-type': 'application/json' },
     });
 
     var rest = result.json();
