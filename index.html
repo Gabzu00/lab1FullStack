@@ -14,12 +14,7 @@
   <h1>Hello!</h1>
   <h2>These are the albums:</h2>
 
-  <label for="id">Search for id </label>
-  <input type="text" id="searchTitle" name="searchTitle" required>
-  <button id="searchButton">Search</button>
-  <div id="showTitleSearch">
 
-  </div>
 
   <table>
     <thead>
@@ -35,6 +30,14 @@
     </tbody>
   </table>
   <div>&nbsp;</div>
+
+  <label for="id">Search for title </label>
+  <input type="text" id="searchTitle" name="searchTitle" required>
+  <button id="searchButton">Search</button>
+  <div id="showTitleSearch">
+
+  </div>
+
   <div>
     Add new album:
   </div>
@@ -57,6 +60,10 @@
     </div>
     <div>
       <button type="submit" id="addButton">Add</button>
+    </div>
+
+    <div id="ErrorMessage">
+
     </div>
 
 </body>
