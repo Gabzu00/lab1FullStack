@@ -1,0 +1,47 @@
+.styleContent {
+  display: grid;
+  place-items: center;
+  margin: 0 auto;
+  max-width: 50em;
+  background-color: rgb(200, 196, 196);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#myCell {
+  padding-top: 10px;
+}
+
+#styleTable {
+  padding-right: 30px;
+  padding-left: 30px;
+  text-align: center;
+}
+
+.searchStyle {
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+.idAdd {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  position: relative;
+  left: 16.5px;
+}
+
+.titleAdd {
+  padding-bottom: 10px;
+}
+
+.artistAdd {
+  padding-bottom: 10px;
+  position: relative;
+  right: 5.6px;
+}
+
+#addButton {
+  position: relative;
+  left: 100px;
+  margin-top: 20px;
+}

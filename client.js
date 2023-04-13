@@ -18,21 +18,26 @@ async function displayData() {
 
     // create a new table row element
     const newRow = document.createElement('tr');
+    newRow.id = 'my-row';
 
     // create table cells and insert data into them
     const idCell = document.createElement('td');
+    idCell.id = "myCell"
     idCell.textContent = element._id;
     newRow.appendChild(idCell);
 
     const titleCell = document.createElement('td');
+    titleCell.id = "styleTable"
     titleCell.textContent = element.title;
     newRow.appendChild(titleCell);
 
     const artistCell = document.createElement('td');
+    artistCell.id = "styleTable"
     artistCell.textContent = element.artistName;
     newRow.appendChild(artistCell);
 
     const yearCell = document.createElement('td');
+    yearCell.id = "styleTable"
     yearCell.textContent = element.year;
     newRow.appendChild(yearCell);
 
@@ -41,11 +46,13 @@ async function displayData() {
 
     // create update button element
     const updateButton = document.createElement('button');
+    updateButton.id = "styleTable"
     updateButton.textContent = 'Update';
     updateButton.id = `updateButton-${element._id}`;
 
     // create delete button element
     const deleteButton = document.createElement('button');
+    deleteButton.id = "styleTable"
     deleteButton.textContent = 'Delete';
     deleteButton.id = `deleteButton-${element._id}`;
 
