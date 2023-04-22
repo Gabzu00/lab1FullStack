@@ -1,10 +1,10 @@
-window.addEventListener("load", displayData)
+/* window.addEventListener("load", displayData) */
 const addID = document.getElementById('addId');
 const addTitle = document.getElementById('addTitle');
 const addArtist = document.getElementById('addArtist');
 const addYear = document.getElementById('addYear');
 
-
+displayData()
 
 async function displayData() {
 
@@ -130,6 +130,7 @@ async function getData() {
     })
 
     var rest = result.json();
+    console.log(rest + " hello ")
     return (rest)
   } catch {
 
