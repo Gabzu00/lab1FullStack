@@ -24,10 +24,11 @@ connectToDB()
     console.log(error);
   });
 
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-  const filePath = path.join(__dirname, 'index.html');
-  res.sendFile(filePath)
+  /* const filePath = path.join(__dirname, 'index.html'); */
+  res.sendFile(path.join(__dirname, '/index.html'))
 })
 
 app.get('/api/albums', (req, res) => {
