@@ -152,7 +152,7 @@ searchButton.addEventListener('click', async () => {
 async function getTitle(searchTitleValue) {
 
   try {
-    var result = await fetch(`http://localhost:3000/api/albums/${searchTitleValue}`, {
+    var result = await fetch(`https://lab2fullstack.onrender.com/api/albums/${searchTitleValue}`, {
       method: 'GET',
       headers: { 'content-type': 'application/json' }
     });
@@ -186,7 +186,7 @@ addButton.addEventListener('click', async () => {
 async function addData(id, title, artist, year) {
 
   try {
-    var result = await fetch('http://localhost:3000/api/albums', {
+    var result = await fetch('https://lab2fullstack.onrender.com/api/albums', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ id: id, title: title, artist: artist, year: year })
@@ -204,7 +204,7 @@ async function addData(id, title, artist, year) {
 
 async function updateData(id, title, artist, year) {
   try {
-    var result = await fetch(`http://localhost:3000/api/albums/${id}`, {
+    var result = await fetch(`https://lab2fullstack.onrender.com/api/albums/${id}`, {
       method: 'PUT',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ title: title, artist: artist, year: year })
@@ -220,7 +220,7 @@ async function updateData(id, title, artist, year) {
 
 async function deleteData(id) {
   try {
-    var result = await fetch(`http://localhost:3000/api/albums/${id}`, {
+    var result = await fetch(`https://lab2fullstack.onrender.com/api/albums/${id}`, {
       method: 'DELETE',
       headers: { 'content-type': 'application/json' },
     });
