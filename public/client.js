@@ -1,10 +1,8 @@
-/* window.addEventListener("load", displayData) */
+window.addEventListener("load", displayData)
 const addID = document.getElementById('addId');
 const addTitle = document.getElementById('addTitle');
 const addArtist = document.getElementById('addArtist');
 const addYear = document.getElementById('addYear');
-
-displayData()
 
 async function displayData() {
 
@@ -12,7 +10,7 @@ async function displayData() {
 
   console.log(albums)
   /* document.getElementById('showAlbums').innerHTML = JSON.stringify(albums, null, 2) */
-  albums.forEach(element => {
+  albums?.forEach(element => {
     // get a reference to the table body element
     const tableBody = document.getElementById('showAlbums');
 
@@ -129,7 +127,7 @@ async function getData() {
       headers: { 'content-type': 'application/json' }
     })
 
-    var rest = result.json();
+    var rest = await result.json();
     console.log(rest + " hello ")
     return (rest)
   } catch {
