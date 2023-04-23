@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 app.get('/api/albums', (req, res) => {
   getData()
     .then(albums => {
-      getData(albums);
+      /* getData(albums); */
       res.json(albums)
     })
     .catch(error => {

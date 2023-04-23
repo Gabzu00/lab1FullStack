@@ -122,7 +122,7 @@ async function displayData() {
 async function getData() {
 
   try {
-    var result = await fetch('http://localhost:3000/api/albums', {
+    var result = await fetch('https://lab2fullstack.onrender.com/', {
       method: 'GET',
       headers: { 'content-type': 'application/json' }
     })
